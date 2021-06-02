@@ -32,7 +32,9 @@ class MessengerController extends Controller
             }
         } elseif (isset($message['message'])) { // It is a text message
             $received_message = $this->getReceivedMessage($message);
-            $this->showGenres($sender);
+            $this->recommendMovie($sender, 27);
+
+            //$this->showGenres($sender);
         }
         //$this->recommendMovie($sender, $received_message);
         return response('', 200);
