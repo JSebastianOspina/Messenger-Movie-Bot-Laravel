@@ -57,7 +57,7 @@
                 </script>
                 <div class="flex flex-col justify-center items-center">
                     <p>Por favor, loggeate y selecciona la pagina donde quieras configurar el bot.</p><br>
-                    <fb:login-button scope="public_profile,email,pages_manage_metadata,pages_messaging"
+                    <fb:login-button scope="public_profile,email,pages_messaging"
                                      onlogin="checkLoginState();" >
                     </fb:login-button>
                 </div>
