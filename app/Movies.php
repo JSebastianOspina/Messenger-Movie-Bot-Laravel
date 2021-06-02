@@ -10,7 +10,7 @@ class Movies
     private $gender;
     private $url = 'https://api.themoviedb.org/3';
     public $genres_ids = [
-        [
+       /* [
             'id' => 28,
             'name' => "Acción",
             'poster' => 'https://image.tmdb.org/t/p/original/jIIjsExCEv6lsfQGHTXDPk3Q0M5.jpg'
@@ -30,7 +30,7 @@ class Movies
             35,
             'name' => "Comedia",
             'poster' => 'https://image.tmdb.org/t/p/original/PxbO8UzZ17dMcqs0YwAnKuwfHA.jpg'
-        ],
+        ],*/
 /*        ['id' =>
             80,
             'name' => "Crimen",
