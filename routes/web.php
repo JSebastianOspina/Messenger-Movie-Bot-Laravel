@@ -18,9 +18,9 @@ use App\Movies;
     $movie = new Movies();
     return $movie->getMovieByGenre($genre);
 });*/
-
+Route::get('set-up',[\App\Http\Controllers\LoginController::class,'setup'])->middleware('auth');
+Route::view('/terms-of-service', 'privacy'); //Pendiente
 Route::view('/privacy', 'privacy');
-
 Route::get('/send/{genre}', function ($genre) {
     return $genre;
     $movie = new Movies();
