@@ -73,7 +73,7 @@ class MessengerController extends Controller
 
                 ]
             ]);
-
+        Log::debug($response);
     }
 
     private function buildGenres()
