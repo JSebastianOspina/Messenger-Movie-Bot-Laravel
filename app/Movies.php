@@ -68,22 +68,22 @@ class Movies
             'name' => "Misterio",
             'poster' => 'https://image.tmdb.org/t/p/original/yJTk4eqQd9Yo5REpFbTSOMkbSgn.jpg'
         ],*/
-        ['id' =>
+       /* ['id' =>
             10749,
             'name' => "Romance",
             'poster' => 'https://image.tmdb.org/t/p/original/xGDbQI7Gtgurt9W5ez6Tim2lpS2.jpg'
-        ],
+        ],*/
         ['id' =>
             878,
             'name' => "Ciencia ficción",
             'poster' => 'https://image.tmdb.org/t/p/original/lMFgbCskJgsJdPH81SwVZOc1hNs.jpg'
         ],
 
-        ['id' =>
+      /*  ['id' =>
             53,
             'name' => "Suspense",
             'poster' => 'https://image.tmdb.org/t/p/original/ddO5a3tMPpQutSDQO1bESgLWadB.jpg'
-        ],
+        ],*/
         /* ['id' =>
              10752,
              'name' => "Bélica",
