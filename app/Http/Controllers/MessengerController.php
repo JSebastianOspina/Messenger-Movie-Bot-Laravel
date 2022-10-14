@@ -40,66 +40,21 @@ class MessengerController extends Controller
         return response('', 200);
     }
 
-
-    private function sendMessage(string $sender, string $received_message)
+    private function getRecipient(array $message): string
     {
-        $this->recommendMovie($sender, $received_message);
+        return $message['recipient']['id'];
     }
 
-    private function showGenres(string $sender)
+    private function getSender($message): string
     {
-        $page_access_token = env('MESSENGER_TOKEN');
-        $movies = new Movies();
-        $response = Http::post("https://graph.facebook.com/v10.0/me/messages?access_token={$page_access_token}",
-            [
-                'recipient' => [
-                    'id' => $sender
-                ]
-                ,
-                'message' => [
-                    'attachment' => [
-                        'type' => 'template',
-                        'payload' => [
-                            'template_type' => 'list',
-                            'top_element_style' => 'large',
-                            'elements' => $this->buildGenres(),
-                            'buttons' => [
-                                [
-                                    "type" => "postback",
-                                    "payload" => "genre: ",
-                                    "title" => "Ver mas"
-                                ]
-                            ]
-                        ]
-                    ]
+        return $message['sender']['id'];
 
-                ]
-            ]);
-        Log::debug($response);
     }
 
-    private function buildGenres()
+    private function getPostBack($message)
     {
-        $formated_genres = [];
-        $movies = new Movies();
-        foreach ($movies->genres_ids as $genre) {
-            $formated_genres[] = [
-                'title' => $genre['name'],
-                'subtitle' => 'Peliculas de ' . $genre['name'],
-                'image_url' => $genre['poster'],
-                'buttons' => [[
-                    "type" => "postback",
-                    "title" => $genre['name'],
-                    "payload" => "genre:".$genre['id']
-                ]]
-
-            ];
-
-        }
-
-        return $formated_genres;
+        return $message['postback'];
     }
-
 
     private function recommendMovie($sender, $genre_id): void
     {
@@ -147,15 +102,44 @@ class MessengerController extends Controller
 
     }
 
-    private function getRecipient(array $message): string
+    private function showGenres(string $sender)
     {
-        return $message['recipient']['id'];
+        $page_access_token = env('MESSENGER_TOKEN');
+        $movies = new Movies();
+        $response = Http::post("https://graph.facebook.com/v10.0/me/messages?access_token={$page_access_token}",
+            [
+                'recipient' => [
+                    'id' => $sender
+                ]
+                ,
+                'message' => [
+                    'attachment' => [
+                        'type' => 'template',
+                        'payload' => [
+                            'template_type' => 'button',
+                            'buttons' => $this->buildGenres(),
+                        ]
+                    ]
+
+                ]
+            ]);
+        Log::debug($response);
     }
 
-    private function getSender($message): string
+    private function buildGenres()
     {
-        return $message['sender']['id'];
+        $formated_genres = [];
+        $movies = new Movies();
+        foreach ($movies->genres_ids as $genre) {
+            $formated_genres[] = [
+                "type" => "postback",
+                "title" => $genre['name'],
+                "payload" => "genre:" . $genre['id']
+            ];
 
+        }
+
+        return $formated_genres;
     }
 
     private function getReceivedMessage($message)
@@ -163,8 +147,8 @@ class MessengerController extends Controller
         return $message['message']['text'];
     }
 
-    private function getPostBack($message)
+    private function sendMessage(string $sender, string $received_message)
     {
-        return $message['postback'];
+        $this->recommendMovie($sender, $received_message);
     }
 }
