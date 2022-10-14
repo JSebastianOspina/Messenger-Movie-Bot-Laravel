@@ -117,6 +117,7 @@ class MessengerController extends Controller
                         'type' => 'template',
                         'payload' => [
                             'template_type' => 'button',
+                            "text" => "Por favor, selecciona un nuevo género",
                             'buttons' => $this->buildGenres(),
                         ]
                     ]
