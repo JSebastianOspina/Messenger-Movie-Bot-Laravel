@@ -33,10 +33,10 @@
 
                     window.fbAsyncInit = function () {
                         FB.init({
-                            appId: "1146202209224055",
+                            appId: "284088670728253",
                             cookie: true,
                             xfbml: true,
-                            version: "v10.0", // Use this Graph API version for this call.
+                            version: "v16.0", // Use this Graph API version for this call.
                         });
 
                         FB.getLoginStatus(function (response) {
